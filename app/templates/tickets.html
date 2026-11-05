@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8">
+    <title>Обращения</title>
+</head>
+<body>
+    <h1>Обращения пользователей</h1>
+    <form method="get">
+    <input type="text" name="q" value="{{ q }}" placeholder="Поиск по тексту">
+
+    <select name="category">
+        <option value="">Все категории</option>
+        {% for c in categories %}
+        <option value="{{ c['id'] }}" {% if category == c['id']|string %}selected{% endif %}>
+            {{ c["name"] }}
+        </option>
+        {% endfor %}
+    </select>
+
+    <select name="status">
+        <option value="">Все статусы</option>
+        {% for s in statuses %}
+        <option value="{{ s }}" {% if status == s %}selected{% endif %}>{{ s }}</option>
+        {% endfor %}
+    </select>
+
+    <button type="submit">Найти</button>
+    <a href="/">Сбросить</a>
+    </form>
+    <table border="1" cellpadding="6">
+        <tr>
+            <th>№</th>
+            <th>Тема</th>
+            <th>Категория</th>
+            <th>Статус</th>
+            <th>Дата</th>
+        </tr>
+        {% for t in tickets %}
+        <tr>
+            <td>{{ t["id"] }}</td>
+            <td>{{ t["title"] }}</td>
+            <td>{{ t["category"] }}</td>
+            <td>{{ t["status"] }}</td>
+            <td>{{ t["created_at"] }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
