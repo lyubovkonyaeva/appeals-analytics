@@ -39,7 +39,7 @@
         {% for t in tickets %}
         <tr>
             <td>{{ t["id"] }}</td>
-            <td>{{ t["title"] }}</td>
+            <td><a href="/ticket/{{ t['id'] }}">{{ t["title"] }}</a></td>
             <td>{{ t["category"] }}</td>
             <td>{{ t["status"] }}</td>
             <td>{{ t["created_at"] }}</td>
