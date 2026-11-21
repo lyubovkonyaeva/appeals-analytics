@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8">
+    <title>Статистика</title>
+</head>
+{{ bar_html | safe }}
+{{ pie_html | safe }}
+<body>
+    <a href="/">← К списку</a>
+    <h1>Статистика обращений</h1>
+    <p>Всего обращений: <b>{{ total_tickets }}</b></p>
+
+    <h2>По категориям</h2>
+    <table border="1" cellpadding="6">
+        <tr><th>Категория</th><th>Количество</th></tr>
+        {% for row in tickets_per_category %}
+        <tr>
+            <td>{{ row["name"] }}</td>
+            <td>{{ row["count"] }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <h2>По статусам</h2>
+    <table border="1" cellpadding="6">
+        <tr><th>Статус</th><th>Количество</th></tr>
+        {% for row in tickets_per_status %}
+        <tr>
+            <td>{{ row["status"] }}</td>
+            <td>{{ row["count"] }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
